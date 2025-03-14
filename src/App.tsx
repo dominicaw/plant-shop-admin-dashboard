@@ -1,13 +1,15 @@
-import './App.css'
 import { ThemeProvider } from '@emotion/react'
 import theme from './theme'
-import { CssBaseline, Typography } from '@mui/material'
+import { Container, CssBaseline } from '@mui/material'
+import Login from './components/Login'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Typography>Your content here</Typography>
+      <Container maxWidth='md'>
+        <Login />
+      </Container>
     </ThemeProvider>
   )
 }
