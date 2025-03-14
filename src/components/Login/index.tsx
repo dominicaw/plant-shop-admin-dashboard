@@ -1,13 +1,28 @@
 import { TextField, Button, Stack } from '@mui/material'
 import { defaultFullscreenPageStyling } from '../../theme'
 import Logo from '../Logo'
+import { convertPxToRem } from '../../utils'
 
 export default function Login() {
   return (
-    <Stack spacing={2} sx={{ ...defaultFullscreenPageStyling }}>
-      <Logo size='large' />
-      <Stack spacing={2}>
-        <form>
+    <Stack spacing={5} sx={{ ...defaultFullscreenPageStyling }}>
+      <Stack alignItems='center'>
+        <Logo size='large' />
+      </Stack>
+
+      <form
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Stack
+          spacing={2}
+          sx={{
+            maxWidth: convertPxToRem(350),
+            width: '100%',
+          }}
+        >
           <TextField
             label='Email'
             variant='outlined'
@@ -29,12 +44,13 @@ export default function Login() {
             fullWidth
             type='submit'
             size='medium'
-            // disableElevation
+            disableElevation
+            disableTouchRipple
           >
             Login
           </Button>
-        </form>
-      </Stack>
+        </Stack>
+      </form>
     </Stack>
   )
 }
