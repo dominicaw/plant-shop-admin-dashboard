@@ -29,11 +29,12 @@ export default function Logo(size: LogoProps) {
       <Stack>
         <Typography
           variant='h1'
-          color='primary'
+          color='accent1'
           sx={{
             fontWeight: 600,
             fontSize: fontSize,
             lineHeight: 1,
+            letterSpacing: -2,
           }}
         >
           Club
