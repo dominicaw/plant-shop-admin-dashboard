@@ -3,19 +3,25 @@ import { convertPxToRem } from '../../utils'
 
 interface LogoProps {
   size?: 'small' | 'medium' | 'large'
+  textColor?: string
 }
 
-export default function Logo(size: LogoProps) {
+export default function Logo({ size, textColor = 'accent1' }: LogoProps) {
   const sizes = {
-    small: { logoSize: convertPxToRem(50), fontSize: convertPxToRem(24) },
+    small: { logoSize: convertPxToRem(40), fontSize: convertPxToRem(22) },
     medium: { logoSize: convertPxToRem(70), fontSize: convertPxToRem(36) },
     large: { logoSize: convertPxToRem(90), fontSize: convertPxToRem(48) },
   }
 
-  const { logoSize, fontSize } = sizes[size.size || 'medium']
+  const { logoSize, fontSize } = sizes[size || 'medium']
 
   return (
-    <Stack flexDirection='row' alignItems='center' gap={2}>
+    <Stack
+      flexDirection='row'
+      alignItems='center'
+      gap={2}
+      sx={{ width: '100%' }}
+    >
       <Stack sx={{ width: logoSize, height: 'auto' }}>
         <img
           src='/monstera.png'
@@ -29,7 +35,7 @@ export default function Logo(size: LogoProps) {
       <Stack>
         <Typography
           variant='h1'
-          color='accent1'
+          color={textColor}
           sx={{
             fontWeight: 600,
             fontSize: fontSize,

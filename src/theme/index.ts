@@ -1,4 +1,4 @@
-import { createTheme, ThemeOptions } from '@mui/material/styles'
+import { createTheme, SxProps, Theme, ThemeOptions } from '@mui/material/styles'
 import { convertPxToRem } from '../utils'
 
 declare module '@mui/material/styles' {
@@ -158,11 +158,13 @@ const themeOptions: ThemeOptions = {
 
 const theme = createTheme(themeOptions)
 
-export const defaultFullscreenPageStyling = {
+export const defaultFullscreenPageStyling = (
+  color?: string
+): SxProps<Theme> | undefined => ({
   minHeight: '100%',
   py: 3,
   '&::before': {
-    background: `linear-gradient(to bottom, ${theme.palette.background.paper}, ${theme.palette.neutral.light})`,
+    background: color || theme.palette.neutral.light,
     content: "''",
     height: '100%',
     left: 0,
@@ -172,8 +174,6 @@ export const defaultFullscreenPageStyling = {
     width: '100%',
     zIndex: -1,
   },
-}
-
-console.log(theme.palette.neutral.light)
+})
 
 export default theme
