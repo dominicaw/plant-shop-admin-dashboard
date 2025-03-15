@@ -1,4 +1,10 @@
-import { createTheme, SxProps, Theme, ThemeOptions } from '@mui/material/styles'
+import {
+  createTheme,
+  Shadows,
+  SxProps,
+  Theme,
+  ThemeOptions,
+} from '@mui/material/styles'
 import { convertPxToRem } from '../utils'
 
 declare module '@mui/material/styles' {
@@ -24,6 +30,43 @@ declare module '@mui/material/Button' {
 
 const fonts = {
   default: ['"Roboto"', '"Arial"', 'sans-serif'].join(','),
+}
+
+const shadowList: Shadows = [
+  'none',
+  'none',
+  'none',
+  '0 1px 2px rgba(0, 0, 0, 0.03), 0 3px 8px rgba(0, 0, 0, 0.04), 0 10px 20px rgba(0, 0, 0, 0.07)',
+  'none',
+  'none',
+  '0 2px 3px 0 rgba(0, 0, 0, 0.03), 0 4px 10px 0 rgba(0, 0, 0, 0.04), 0 18px 47px 0 rgba(0, 0, 0, 0.07)',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  '0 3px 2px 0 rgba(0, 0, 0, 0.02), 0 7px 5px 0 rgba(0, 0, 0, 0.03), 0 12px 10px 0 rgba(0, 0, 0, 0.04), 0 22px 18px 0 rgba(0, 0, 0, 0.04), 0 -2px 28px 0 rgba(0, 0, 0, 0.05)',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  '0 3px 2px 0 rgba(0, 0, 0, 0.02), 0 7px 5px 0 rgba(0, 0, 0, 0.03), 0 12px 10px 0 rgba(0, 0, 0, 0.04), 0 22px 18px 0 rgba(0, 0, 0, 0.04), 0 42px 33px 0 rgba(0, 0, 0, 0.05), 0 100px 80px 0 rgba(0, 0, 0, 0.07)',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  '0 3px 4px 0 rgba(0, 0, 0, 0.03), 0 7px 10px 0 rgba(0, 0, 0, 0.04), 0 13px 18px 0 rgba(0, 0, 0, 0.05), 0 22px 32px 0 rgba(0, 0, 0, 0.06), 0 42px 61px 0 rgba(0, 0, 0, 0.07), 0 100px 145px 0 rgba(0, 0, 0, 0.15)',
+]
+
+export const shadows = {
+  none: 0,
+  lightest: 3,
+  light: 6,
+  medium: 12,
+  dark: 18,
+  heavy: 24,
 }
 
 const baseButtonStyle = {
@@ -174,6 +217,10 @@ export const defaultFullscreenPageStyling = (
     width: '100%',
     zIndex: -1,
   },
+})
+
+shadowList.forEach((shadowValue: string, index: number) => {
+  theme.shadows[index] = shadowValue
 })
 
 export default theme

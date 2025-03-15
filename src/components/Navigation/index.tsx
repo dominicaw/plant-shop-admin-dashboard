@@ -22,7 +22,7 @@ import {
 } from '@mui/material'
 import User from '../User'
 
-const drawerWidth = 240
+const drawerWidth = 200
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean
@@ -56,7 +56,6 @@ const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })<AppBarProps>(({ theme }) => ({
   boxShadow: 'none',
-  borderBottom: `1px solid ${theme.palette.primary.main}`,
   background: theme.palette.background.paper,
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
@@ -143,10 +142,10 @@ export default function Navigation({ children }: NavigationProps) {
           }}
         >
           <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon sx={{ color: theme.palette.primary.main }} />
+            <ChevronLeftIcon sx={{ color: theme.palette.secondary.dark }} />
           </IconButton>
         </Box>
-        <Divider sx={{ backgroundColor: theme.palette.primary.main }} />
+        <Divider sx={{ backgroundColor: theme.palette.secondary.main }} />
         <List>
           {['Inbox', 'Starred'].map((text, index) => (
             <ListItem key={text} disablePadding>

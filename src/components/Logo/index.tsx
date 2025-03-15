@@ -8,7 +8,7 @@ interface LogoProps {
 
 export default function Logo({ size, textColor = 'accent1' }: LogoProps) {
   const sizes = {
-    small: { logoSize: convertPxToRem(40), fontSize: convertPxToRem(22) },
+    small: { logoSize: convertPxToRem(38), fontSize: convertPxToRem(20) },
     medium: { logoSize: convertPxToRem(70), fontSize: convertPxToRem(36) },
     large: { logoSize: convertPxToRem(90), fontSize: convertPxToRem(48) },
   }
