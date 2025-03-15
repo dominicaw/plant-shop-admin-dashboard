@@ -20,6 +20,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material'
+import User from '../User'
 
 const drawerWidth = 240
 
@@ -110,6 +111,11 @@ export default function Navigation({ children }: NavigationProps) {
             <MenuIcon />
           </IconButton>
           <Logo size='small' />
+          <User
+            firstName='Dominica'
+            lastName='Wannenburg'
+            email='dominicawan@gmail.com'
+          />
         </Toolbar>
       </AppBar>
       <Drawer
