@@ -1,6 +1,7 @@
 import { Stack, Typography } from '@mui/material'
 import theme, { defaultFullscreenPageStyling, shadows } from '../../theme'
 import Navigation from '../Navigation'
+import PlantItem from '../PlantItem'
 import StoreSelection from '../StoreSelection'
 
 export default function Dashboard() {
@@ -11,9 +12,10 @@ export default function Dashboard() {
           <Stack
             flexDirection={{ xs: 'column', sm: 'row' }}
             justifyContent='space-between'
+            spacing={{ xs: 2, sm: 0 }}
           >
             <Stack>
-              <Typography variant='h2'>
+              <Typography variant='h2' component='h1'>
                 Club Chlorophyll | Kloof Street
               </Typography>
               <Typography variant='body1'>Welcome to the dashboard</Typography>
@@ -28,8 +30,12 @@ export default function Dashboard() {
               padding: 2,
               boxShadow: shadows.lightest,
             }}
+            spacing={2}
           >
-            Plants
+            <Typography variant='h3' component='h2'>
+              Plants
+            </Typography>
+            <PlantItem />
           </Stack>
         </Stack>
       </Navigation>

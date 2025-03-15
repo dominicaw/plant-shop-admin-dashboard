@@ -1,16 +1,13 @@
 import { Button, Menu, MenuItem } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person'
 import React, { useState } from 'react'
-import { convertPxToRem } from '../../utils'
 import { shadows } from '../../theme'
 
 interface UserProps {
   firstName: string
-  lastName: string
-  email: string
 }
 
-export default function User({ firstName, lastName, email }: UserProps) {
+export default function User({ firstName }: UserProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -64,7 +61,6 @@ export default function User({ firstName, lastName, email }: UserProps) {
           },
         }}
       >
-        <MenuItem onClick={onMenuClose}>Profile</MenuItem>
         <MenuItem onClick={onMenuClose}>My account</MenuItem>
         <MenuItem onClick={onMenuClose}>Logout</MenuItem>
       </Menu>

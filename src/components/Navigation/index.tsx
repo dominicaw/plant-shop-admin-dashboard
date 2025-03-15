@@ -110,11 +110,7 @@ export default function Navigation({ children }: NavigationProps) {
             <MenuIcon />
           </IconButton>
           <Logo size='small' />
-          <User
-            firstName='Dominica'
-            lastName='Wannenburg'
-            email='dominicawan@gmail.com'
-          />
+          <User firstName='Dominica' />
         </Toolbar>
       </AppBar>
       <Drawer
