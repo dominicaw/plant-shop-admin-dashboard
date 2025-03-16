@@ -1,7 +1,9 @@
-export async function getToken(credentials: {
-  username: string
-  password: string
-}) {
+export async function getToken(
+  credentials: {
+    username: string
+    password: string
+  } | null
+) {
   const response = await fetch('/api/token', {
     method: 'POST',
     headers: {
@@ -15,4 +17,9 @@ export async function getToken(credentials: {
   }
 
   return response.json()
+}
+
+export function logout() {
+  localStorage.removeItem('token')
+  getToken(null)
 }

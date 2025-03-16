@@ -11,7 +11,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import theme from '../../theme'
 import Logo from '../Logo'
-import User from '../User'
+import UserNavigation from '../UserNavigation'
 
 interface NavigationProps {
   children: React.ReactNode
@@ -70,7 +70,7 @@ export default function Navigation({ children }: NavigationProps) {
             <MenuIcon />
           </IconButton>
           <Logo size='small' />
-          <User firstName='Dominica' />
+          <UserNavigation firstName='Dominica' />
         </Toolbar>
       </AppBar>
       <Drawer

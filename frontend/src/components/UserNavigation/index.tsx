@@ -2,14 +2,17 @@ import { Button, Menu, MenuItem } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person'
 import React, { useState } from 'react'
 import { shadows } from '../../theme'
+import { logout } from '../../utils/api'
+import { useNavigate } from 'react-router-dom'
 
-interface UserProps {
+interface UserNavigationProps {
   firstName: string
 }
 
-export default function User({ firstName }: UserProps) {
+export default function UserNavigation({ firstName }: UserNavigationProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
+  const navigate = useNavigate()
 
   function onUserButtonClick(event: React.MouseEvent<HTMLButtonElement>) {
     setAnchorEl(event.currentTarget)
@@ -17,6 +20,11 @@ export default function User({ firstName }: UserProps) {
 
   function onMenuClose() {
     setAnchorEl(null)
+  }
+
+  function onLogoutClick() {
+    logout()
+    navigate('/')
   }
 
   return (
@@ -62,7 +70,7 @@ export default function User({ firstName }: UserProps) {
         }}
       >
         <MenuItem onClick={onMenuClose}>My account</MenuItem>
-        <MenuItem onClick={onMenuClose}>Logout</MenuItem>
+        <MenuItem onClick={onLogoutClick}>Logout</MenuItem>
       </Menu>
     </div>
   )
