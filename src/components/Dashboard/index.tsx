@@ -1,5 +1,5 @@
-import { Stack, Typography } from '@mui/material'
-import theme, { defaultFullscreenPageStyling, shadows } from '../../theme'
+import { Divider, Stack, Typography } from '@mui/material'
+import { defaultFullscreenPageStyling } from '../../theme'
 import Navigation from '../Navigation'
 import PlantItem from '../PlantItem'
 import StoreSelection from '../StoreSelection'
@@ -22,19 +22,14 @@ export default function Dashboard() {
             </Stack>
             <StoreSelection />
           </Stack>
+          <Divider />
 
-          <Stack
-            sx={{
-              backgroundColor: theme.palette.background.paper,
-              borderRadius: 2,
-              padding: 2,
-              boxShadow: shadows.lightest,
-            }}
-            spacing={2}
-          >
-            <Typography variant='h3' component='h2'>
-              Plants
-            </Typography>
+          <Typography variant='h3' component='h2'>
+            Plants
+          </Typography>
+          <Stack spacing={2}>
+            <PlantItem />
+            <PlantItem />
             <PlantItem />
           </Stack>
         </Stack>
