@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { shadows } from '../../theme'
 import { logout } from '../../utils/api'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 interface UserNavigationProps {
   firstName: string
@@ -13,6 +14,7 @@ export default function UserNavigation({ firstName }: UserNavigationProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const navigate = useNavigate()
+  const { setToken } = useAuth()
 
   function onUserButtonClick(event: React.MouseEvent<HTMLButtonElement>) {
     setAnchorEl(event.currentTarget)
@@ -23,7 +25,7 @@ export default function UserNavigation({ firstName }: UserNavigationProps) {
   }
 
   function onLogoutClick() {
-    logout()
+    logout(setToken)
     navigate('/')
   }
 

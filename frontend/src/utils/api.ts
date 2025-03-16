@@ -19,7 +19,7 @@ export async function getToken(
   return response.json()
 }
 
-export function logout() {
+export function logout(setToken: (token: string | null) => void) {
   localStorage.removeItem('token')
-  getToken(null)
+  setToken(null)
 }

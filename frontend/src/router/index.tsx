@@ -1,18 +1,26 @@
 import { Route, Routes } from 'react-router'
 import LoginPage from '../pages/LoginPage'
 import Dashboard from '../components/Dashboard'
-import UnauthenticatedRedirect from '../components/UnauthenticatedRedirect'
+import RedirectIfUnauthenticated from '../components/RedirectIfUnauthenticated'
+import RedirectIfAuthenticated from '../components/RedirectIfAuthenticated'
 
 export default function Router() {
   return (
     <Routes>
-      <Route path='/' element={<LoginPage />} />
+      <Route
+        path='/'
+        element={
+          <RedirectIfAuthenticated>
+            <LoginPage />
+          </RedirectIfAuthenticated>
+        }
+      />
       <Route
         path='/dashboard'
         element={
-          <UnauthenticatedRedirect>
+          <RedirectIfUnauthenticated>
             <Dashboard />
-          </UnauthenticatedRedirect>
+          </RedirectIfUnauthenticated>
         }
       />
     </Routes>
