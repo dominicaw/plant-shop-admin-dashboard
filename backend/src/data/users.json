@@ -1,0 +1,17 @@
+[
+  {
+    "email": "owner@example.com",
+    "password": "ownerpassword",
+    "roles": ["owner"]
+  },
+  {
+    "email": "manager@example.com",
+    "password": "managerpassword",
+    "roles": ["manager"]
+  },
+  {
+    "email": "assistant@example.com",
+    "password": "assistantpassword",
+    "roles": ["assistant"]
+  }
+]

@@ -1,25 +1,26 @@
 import { useState } from 'react'
-import { TextField, Button, Stack } from '@mui/material'
+import { TextField, Button, Stack, Typography } from '@mui/material'
 import { convertPxToRem } from '../../utils'
 import { getToken } from '../../utils/api'
 import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [error, setError] = useState<string | null>(null)
   const { setToken } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setError(null)
     try {
-      const tokenData = await getToken({ username: email, password })
-      console.log('Token:', tokenData)
+      const tokenData = await getToken({ email, password })
       setToken(tokenData.access_token)
       navigate('/dashboard')
     } catch (error) {
-      console.error('Error fetching token:', error)
+      setError((error as Error).message)
     }
   }
 
@@ -57,6 +58,7 @@ export default function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {error && <Typography color='alert'>{error}</Typography>}
         <Button
           variant='contained'
           color='accent1'

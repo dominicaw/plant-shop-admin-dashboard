@@ -1,9 +1,7 @@
-export async function getToken(
-  credentials: {
-    username: string
-    password: string
-  } | null
-) {
+export async function getToken(credentials: {
+  email: string
+  password: string
+}) {
   const response = await fetch('/api/token', {
     method: 'POST',
     headers: {
@@ -13,7 +11,8 @@ export async function getToken(
   })
 
   if (!response.ok) {
-    throw new Error('Failed to fetch token')
+    const errorData = await response.json()
+    throw new Error(errorData.error || 'Failed to fetch token')
   }
 
   return response.json()
