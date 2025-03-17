@@ -5,20 +5,16 @@ import fs from 'fs'
 import path from 'path'
 
 const usersFilePath = path.resolve('src/data/users.json')
-console.log('Reading users from:', usersFilePath)
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'))
 
 export const generateToken = (req, res) => {
   const { email, password } = req.body
 
-  if (!email || !validator.isEmail(email)) {
-    return res.status(400).json({ error: 'Invalid email' })
-  }
-  if (!password) {
-    return res.status(400).json({ error: 'Password is required' })
+  if (!email || !validator.isEmail(email) || !password) {
+    return res.status(401).json({ error: 'Invalid credentials' })
   }
 
-  const user = users.find((u) => u.email == email && u.password == password)
+  const user = users.find((u) => u.email === email && u.password === password)
   if (!user) {
     return res.status(401).json({ error: 'Invalid credentials' })
   }
@@ -32,7 +28,7 @@ export const generateToken = (req, res) => {
   )
 
   const { exp } = jwt.decode(token)
-  const expiry_time = ((exp * 1000 - Date.now()) / 1000) >> 0
+  const expiry_time = Math.floor((exp * 1000 - Date.now()) / 1000)
 
   return res.json({
     access_token: token,

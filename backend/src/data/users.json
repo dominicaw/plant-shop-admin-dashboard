@@ -1,16 +1,16 @@
 [
   {
-    "email": "owner@example.com",
+    "email": "owner@clubchlorophyll.com",
     "password": "ownerpassword",
     "roles": ["owner"]
   },
   {
-    "email": "manager@example.com",
+    "email": "manager@clubchlorophyll.com",
     "password": "managerpassword",
     "roles": ["manager"]
   },
   {
-    "email": "assistant@example.com",
+    "email": "assistant@clubchlorophyll.com",
     "password": "assistantpassword",
     "roles": ["assistant"]
   }
