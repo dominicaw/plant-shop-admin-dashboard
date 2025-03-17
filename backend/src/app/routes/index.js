@@ -1,10 +1,10 @@
 import express from 'express'
-import stockRouter from './stockRouter.js'
+import plantRouter from './plantRouter.js'
 import tokenRouter from './authRouter.js'
 
 const router = express.Router()
 
-router.use('/stock', stockRouter)
+router.use('/plant', plantRouter)
 router.use('/token', tokenRouter)
 
 export default router

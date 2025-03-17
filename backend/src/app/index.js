@@ -27,7 +27,6 @@ app.use(cors(corsOptions))
 app.use(router)
 
 // Serve static files to make live easy
-console.log('Serving static files from:', path.resolve('./src/public'))
 app.use(express.static('./src/public'))
 
 // Return 404 when none of the routes above apply

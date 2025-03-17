@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Ficus Lyrata",
+    "price": 99,
+    "quantity": 100,
+    "image": "/images/ficus-lyrata.webp"
+  },
+  {
+    "id": 2,
+    "name": "Monstera Deliciosa",
+    "price": 120,
+    "quantity": 50,
+    "image": "/images/monstera-deliciosa.webp"
+  },
+  {
+    "id": 3,
+    "name": "Snake Plant",
+    "price": 80,
+    "quantity": 200,
+    "image": "/images/snake-plant.webp"
+  }
+]

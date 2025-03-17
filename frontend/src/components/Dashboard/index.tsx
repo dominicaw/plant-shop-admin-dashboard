@@ -3,8 +3,18 @@ import { defaultFullscreenPageStyling } from '../../theme'
 import Navigation from '../Navigation'
 import PlantItem from '../PlantItem'
 import StoreSelection from '../StoreSelection'
+import { useState, useEffect } from 'react'
+import { getPlants, Plant } from '../../utils/api'
 
 export default function Dashboard() {
+  const [plants, setPlants] = useState<Plant[]>([])
+
+  useEffect(() => {
+    getPlants()
+      .then((data) => setPlants(data))
+      .catch((error) => console.error('Error fetching plants:', error))
+  }, [])
+
   return (
     <Stack sx={{ ...defaultFullscreenPageStyling() }}>
       <Navigation>
@@ -28,9 +38,9 @@ export default function Dashboard() {
             Plants
           </Typography>
           <Stack spacing={2}>
-            <PlantItem />
-            <PlantItem />
-            <PlantItem />
+            {plants.map((plant) => (
+              <PlantItem plant={plant} />
+            ))}
           </Stack>
         </Stack>
       </Navigation>

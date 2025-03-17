@@ -12,10 +12,15 @@ import {
 import theme, { shadows } from '../../theme'
 import { convertPxToRem } from '../../utils'
 import { useState } from 'react'
+import { Plant } from '../../utils/api'
 
-export default function PlantItem() {
-  const [quantity, setQuantity] = useState<number>(0)
-  const [price, setPrice] = useState<number>(0)
+interface PlantItemProps {
+  plant: Plant
+}
+
+export default function PlantItem({ plant }: PlantItemProps) {
+  const [quantity, setQuantity] = useState<number>(plant.quantity || 0)
+  const [price, setPrice] = useState<number>(plant.price || 0)
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -53,19 +58,19 @@ export default function PlantItem() {
                   height: '100%',
                   objectFit: 'cover',
                 }}
-                src='/Ficus-Lyrata.webp'
+                src={plant.image}
                 alt='Ficus Lyrata'
               />
             </Box>
             <Stack>
               <Typography variant='body1' fontWeight={600}>
-                Ficus Lyrata
+                {plant.name}
               </Typography>
               <Typography variant='body2'>
-                <strong>Qty:</strong> 100
+                <strong>Qty:</strong> {plant.quantity}
               </Typography>
               <Typography variant='body2'>
-                <strong>Price:</strong> R99
+                <strong>Price:</strong> R{plant.price}
               </Typography>
             </Stack>
           </Stack>
