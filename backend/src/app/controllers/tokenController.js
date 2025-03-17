@@ -8,7 +8,10 @@ const usersFilePath = path.resolve('src/data/users.json')
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'))
 
 export const generateToken = (req, res) => {
-  const { email, password } = req.body
+  let { email, password } = req.body
+
+  email = validator.normalizeEmail(email)
+  password = password.trim()
 
   if (!email || !validator.isEmail(email) || !password) {
     return res.status(401).json({ error: 'Invalid credentials' })

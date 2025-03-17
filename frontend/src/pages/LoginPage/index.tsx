@@ -21,7 +21,7 @@ export default function LoginPage() {
           margin: 'auto',
         }}
       >
-        <Stack alignItems='center' sx={{ width: '100%' }}>
+        <Stack justifyContent='center' sx={{ width: '100%' }}>
           <Logo size='large' />
         </Stack>
         <LoginForm />
