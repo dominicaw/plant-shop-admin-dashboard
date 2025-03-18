@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { TOKEN_SECRET, TOKEN_EXPIRY } from '../../config/index.js'
 
-export const generateToken = (req, res) => {
+export default function generateToken(req, res) {
   const user = req.user
 
   const token = jwt.sign(
