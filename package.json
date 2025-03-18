@@ -4,12 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"cd frontend && npm run dev\" \"cd backend && node src/index.js\""
+    "start": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
-  },
-  "dependencies": {
-    "@tanstack/react-query": "^5.69.0"
   }
 }
