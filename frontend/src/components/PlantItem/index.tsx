@@ -12,20 +12,55 @@ import {
 import theme, { shadows } from '../../theme'
 import { convertPxToRem } from '../../utils'
 import { useState } from 'react'
-import { Plant } from '../../utils/api'
+import { Plant, updatePlant } from '../../utils/api'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface PlantItemProps {
   plant: Plant
 }
 
+interface FormAlertProps {
+  message: string
+  type: 'error' | 'success'
+}
+
+function FormAlert({ message, type }: FormAlertProps) {
+  return (
+    <Stack
+      sx={{
+        backgroundColor:
+          theme.palette[type === 'error' ? 'error' : 'accent2'].light,
+        borderRadius: 2,
+        padding: 1,
+        border: `1px solid ${
+          theme.palette[type === 'error' ? 'error' : 'accent2'].main
+        }`,
+      }}
+    >
+      <Typography color={type === 'error' ? 'error' : 'accent2'}>
+        {message}
+      </Typography>
+    </Stack>
+  )
+}
+
 export default function PlantItem({ plant }: PlantItemProps) {
   const [quantity, setQuantity] = useState<number>(plant.quantity || 0)
   const [price, setPrice] = useState<number>(plant.price || 0)
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const queryClient = useQueryClient()
+
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    console.log('Price:', price)
-    console.log('Quantity:', quantity)
+    try {
+      await updatePlant(plant.id, { price, quantity })
+      setSuccess('Plant updated successfully!')
+      queryClient.invalidateQueries({ queryKey: ['plants'] })
+    } catch (error) {
+      setError('Something went wrong. Please try again.')
+    }
   }
 
   return (
@@ -100,6 +135,9 @@ export default function PlantItem({ plant }: PlantItemProps) {
               <Button type='submit' variant='contained' size='small'>
                 Update
               </Button>
+
+              {error && <FormAlert message={error} type='error' />}
+              {success && <FormAlert message={success} type='success' />}
             </Stack>
           </form>
         </AccordionDetails>

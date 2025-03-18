@@ -1,5 +1,5 @@
 import express from 'express'
-import { generateToken } from '../controllers/tokenController.js'
+import generateToken from '../controllers/tokenController.js'
 import authValidationMiddleware from '../middleware/authValidationMiddleware.js'
 
 const tokenRouter = express.Router()
