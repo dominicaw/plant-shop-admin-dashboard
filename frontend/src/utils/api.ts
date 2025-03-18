@@ -1,5 +1,3 @@
-import { useAuth } from '../context/AuthContext'
-
 export interface Plant {
   id: number
   name: string
@@ -58,7 +56,7 @@ export async function getToken(
   return response.json()
 }
 
-export async function getPlants(): Promise<Plant[]> {
+export async function getPlants(token: string | null): Promise<Plant[]> {
   return authenticatedFetch('/api/plant', token, {
     method: 'GET',
   })

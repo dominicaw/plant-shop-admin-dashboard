@@ -1,19 +1,13 @@
-import { Divider, Stack, Typography } from '@mui/material'
+import { Divider, Skeleton, Stack, Typography } from '@mui/material'
 import { defaultFullscreenPageStyling } from '../../theme'
 import Navigation from '../Navigation'
 import PlantItem from '../PlantItem'
 import StoreSelection from '../StoreSelection'
-import { useState, useEffect } from 'react'
-import { getPlants, Plant } from '../../utils/api'
+import useGetPlants from '../../hooks/useGetPlants'
+import { convertPxToRem } from '../../utils'
 
 export default function Dashboard() {
-  const [plants, setPlants] = useState<Plant[]>([])
-
-  useEffect(() => {
-    getPlants()
-      .then((data) => setPlants(data))
-      .catch((error) => console.error('Error fetching plants:', error))
-  }, [])
+  const { data: plants, error, isLoading } = useGetPlants()
 
   return (
     <Stack sx={{ ...defaultFullscreenPageStyling() }}>
@@ -37,11 +31,27 @@ export default function Dashboard() {
           <Typography variant='h3' component='h2'>
             Plants
           </Typography>
-          <Stack spacing={2}>
-            {plants.map((plant) => (
-              <PlantItem plant={plant} />
-            ))}
-          </Stack>
+
+          {isLoading && !error && (
+            <Stack spacing={2}>
+              {Array.from({ length: 3 }).map((_, index) => (
+                <Skeleton
+                  key={index}
+                  variant='rectangular'
+                  width='100%'
+                  height={convertPxToRem(88)}
+                  sx={{ borderRadius: 2 }}
+                />
+              ))}
+            </Stack>
+          )}
+          {plants && plants.length > 0 && !error && !isLoading && (
+            <Stack spacing={2}>
+              {plants.map((plant) => (
+                <PlantItem plant={plant} />
+              ))}
+            </Stack>
+          )}
         </Stack>
       </Navigation>
     </Stack>

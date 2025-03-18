@@ -58,7 +58,7 @@ export default function PlantItem({ plant }: PlantItemProps) {
                   height: '100%',
                   objectFit: 'cover',
                 }}
-                src={plant.image}
+                src={`http://localhost:8000/${plant.image}`}
                 alt='Ficus Lyrata'
               />
             </Box>

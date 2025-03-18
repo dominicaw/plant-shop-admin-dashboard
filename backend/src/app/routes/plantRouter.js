@@ -4,6 +4,10 @@ import roleValidationMiddleware from '../middleware/roleValidationMiddleware.js'
 
 const plantRouter = express.Router()
 
-plantRouter.get('/', roleValidationMiddleware('owner'), getPlants)
+plantRouter.get(
+  '/',
+  roleValidationMiddleware('owner', 'manager', 'assistant'),
+  getPlants
+)
 
 export default plantRouter
