@@ -7,12 +7,7 @@ import {
   MenuItem,
 } from '@mui/material'
 import { useState } from 'react'
-
-enum Stores {
-  KLOOF_STREET = 'kloofSteet',
-  MITCHELLS_PLAIN = 'mitchellsPlain',
-  SOMERSET_WEST = 'somersetWest',
-}
+import { Stores } from '../../utils/api'
 
 export default function StoreSelection() {
   const [store, setStore] = useState('kloofSteet')

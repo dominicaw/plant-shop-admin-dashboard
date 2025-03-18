@@ -36,6 +36,18 @@ export interface UserCredentials {
   password: string
 }
 
+export enum Role {
+  OWNER = 'owner',
+  MANAGER = 'manager',
+  ASSISTANT = 'assistant',
+}
+
+export enum Stores {
+  KLOOF_STREET = 'kloofSteet',
+  MITCHELLS_PLAIN = 'mitchellsPlain',
+  SOMERSET_WEST = 'somersetWest',
+}
+
 export async function getToken(
   credentials: UserCredentials
 ): Promise<{ access_token: string }> {

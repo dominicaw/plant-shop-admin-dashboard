@@ -56,10 +56,10 @@ export default function PlantItem({ plant }: PlantItemProps) {
     event.preventDefault()
     try {
       await updatePlant(plant.id, { price, quantity })
-      setSuccess('Plant updated successfully!')
+      setSuccess('🎉 Plant updated successfully!')
       queryClient.invalidateQueries({ queryKey: ['plants'] })
     } catch (error) {
-      setError('Something went wrong. Please try again.')
+      setError('😔 Something went wrong. Please try again.')
     }
   }
 

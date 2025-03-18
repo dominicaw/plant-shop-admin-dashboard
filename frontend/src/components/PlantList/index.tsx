@@ -35,7 +35,7 @@ export function PlantList() {
       {plants && plants.length > 0 && !error && !isLoading && (
         <Stack spacing={2}>
           {plants.map((plant) => (
-            <PlantItem plant={plant} />
+            <PlantItem key={plant.id} plant={plant} />
           ))}
         </Stack>
       )}
