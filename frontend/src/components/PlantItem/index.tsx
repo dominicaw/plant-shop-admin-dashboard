@@ -12,8 +12,9 @@ import {
 import theme, { shadows } from '../../theme'
 import { convertPxToRem } from '../../utils'
 import { useState } from 'react'
-import { Plant, updatePlant } from '../../utils/api'
+import { Plant, Role, updatePlant } from '../../utils/api'
 import { useQueryClient } from '@tanstack/react-query'
+import { useAuth } from '../../context/AuthContext'
 
 interface PlantItemProps {
   plant: Plant
@@ -29,7 +30,7 @@ function FormAlert({ message, type }: FormAlertProps) {
     <Stack
       sx={{
         backgroundColor:
-          theme.palette[type === 'error' ? 'error' : 'accent2'].light,
+          theme.palette[type === 'error' ? 'neutral' : 'accent2'].light,
         borderRadius: 2,
         padding: 1,
         border: `1px solid ${
@@ -49,6 +50,7 @@ export default function PlantItem({ plant }: PlantItemProps) {
   const [price, setPrice] = useState<number>(plant.price || 0)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
+  const { roles } = useAuth()
 
   const queryClient = useQueryClient()
 
@@ -93,7 +95,9 @@ export default function PlantItem({ plant }: PlantItemProps) {
                   height: '100%',
                   objectFit: 'cover',
                 }}
-                src={`http://localhost:8000/${plant.image}`}
+                src={`${
+                  import.meta.env.VITE_API_URL || 'http://localhost:8000'
+                }/${plant.image}`}
                 alt='Ficus Lyrata'
               />
             </Box>
@@ -122,15 +126,17 @@ export default function PlantItem({ plant }: PlantItemProps) {
                 margin='normal'
                 size='small'
               />
-              <TextField
-                onChange={(e) => setPrice(Number(e.target.value))}
-                label='Price'
-                type='number'
-                variant='outlined'
-                fullWidth
-                margin='normal'
-                size='small'
-              />
+              {!roles.includes(Role.ASSISTANT) && (
+                <TextField
+                  onChange={(e) => setPrice(Number(e.target.value))}
+                  label='Price'
+                  type='number'
+                  variant='outlined'
+                  fullWidth
+                  margin='normal'
+                  size='small'
+                />
+              )}
 
               <Button type='submit' variant='contained' size='small'>
                 Update

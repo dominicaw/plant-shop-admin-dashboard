@@ -1,7 +1,11 @@
 import { Stack, Typography } from '@mui/material'
 import StoreSelection from '../StoreSelection'
+import { useAuth } from '../../context/AuthContext'
+import { Role } from '../../utils/api'
 
 export default function DashboardHeader() {
+  const { roles } = useAuth()
+
   return (
     <Stack
       flexDirection={{ xs: 'column', sm: 'row' }}
@@ -14,7 +18,7 @@ export default function DashboardHeader() {
         </Typography>
         <Typography variant='body1'>Welcome to the dashboard</Typography>
       </Stack>
-      <StoreSelection />
+      {roles.includes(Role.OWNER) && <StoreSelection />}
     </Stack>
   )
 }

@@ -18,7 +18,7 @@ plantRouter.post('/', roleValidationMiddleware('owner', 'manager'), addPlant)
 
 plantRouter.put(
   '/:id',
-  roleValidationMiddleware('owner', 'manager'),
+  roleValidationMiddleware('owner', 'manager', 'assistant'),
   updatePlant
 )
 
