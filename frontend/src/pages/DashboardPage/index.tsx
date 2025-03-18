@@ -8,8 +8,8 @@ export default function DashboardPage() {
   return (
     <Stack sx={{ ...defaultFullscreenPageStyling() }}>
       <Navigation>
-        <DashboardHeader />
         <Stack spacing={2}>
+          <DashboardHeader />
           <Divider />
           <PlantList />
         </Stack>

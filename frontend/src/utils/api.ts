@@ -1,3 +1,28 @@
+import axios from 'axios'
+
+const apiClient = axios.create({
+  baseURL: '/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const errorMessage = error.response?.data?.error || 'An error occurred'
+    return Promise.reject(new Error(errorMessage))
+  }
+)
+
 export interface Plant {
   id: number
   name: string
@@ -11,55 +36,16 @@ export interface UserCredentials {
   password: string
 }
 
-async function authenticatedFetch(
-  url: string,
-  token: string | null,
-  options: RequestInit = {}
-) {
-  const headers = {
-    'Content-Type': 'application/json',
-    ...(token && { Authorization: `Bearer ${token}` }),
-  }
-
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      ...headers,
-      ...options.headers,
-    },
-  })
-
-  if (!response.ok) {
-    const errorData = await response.json()
-    throw new Error(errorData.error || 'Failed to fetch')
-  }
-
-  return response.json()
-}
-
 export async function getToken(
   credentials: UserCredentials
 ): Promise<{ access_token: string }> {
-  const response = await fetch('/api/token', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  })
-
-  if (!response.ok) {
-    const errorData = await response.json()
-    throw new Error(errorData.error || 'Failed to fetch token')
-  }
-
-  return response.json()
+  const response = await apiClient.post('/token', credentials)
+  return response.data
 }
 
-export async function getPlants(token: string | null): Promise<Plant[]> {
-  return authenticatedFetch('/api/plant', token, {
-    method: 'GET',
-  })
+export async function getPlants(): Promise<Plant[]> {
+  const response = await apiClient.get('/plant')
+  return response.data
 }
 
 export function logout(setToken: (token: string | null) => void) {
