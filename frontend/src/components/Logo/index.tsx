@@ -19,6 +19,7 @@ export default function Logo({ size, textColor = 'accent1' }: LogoProps) {
     <Stack
       flexDirection='row'
       alignItems='center'
+      justifyContent='inherit'
       gap={2}
       sx={{ width: '100%' }}
     >
