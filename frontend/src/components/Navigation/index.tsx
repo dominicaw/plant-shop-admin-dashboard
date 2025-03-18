@@ -70,7 +70,7 @@ export default function Navigation({ children }: NavigationProps) {
             <MenuIcon />
           </IconButton>
           <Logo size='small' />
-          <UserNavigation firstName='Dominica' />
+          <UserNavigation />
         </Toolbar>
       </AppBar>
       <Drawer

@@ -72,8 +72,3 @@ export async function updatePlant(
   const response = await apiClient.put(`/plant/${id}`, plant)
   return response.data
 }
-
-export function logout(setToken: (token: string | null) => void) {
-  localStorage.removeItem('token')
-  setToken(null)
-}

@@ -8,21 +8,19 @@ import { AuthProvider } from './context/AuthContext'
 
 const queryClient = new QueryClient()
 
-function App() {
+export default function App() {
   return (
-    <AuthProvider>
+    <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Container maxWidth='md'>
-            <BrowserRouter>
+        <AuthProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Container maxWidth='md'>
               <Router />
-            </BrowserRouter>
-          </Container>
-        </ThemeProvider>
+            </Container>
+          </ThemeProvider>
+        </AuthProvider>
       </QueryClientProvider>
-    </AuthProvider>
+    </BrowserRouter>
   )
 }
-
-export default App
