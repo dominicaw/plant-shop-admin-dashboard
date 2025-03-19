@@ -1,28 +1,5 @@
 import axios from 'axios'
 
-const apiClient = axios.create({
-  baseURL: '/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-})
-
-apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`
-  }
-  return config
-})
-
-apiClient.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const errorMessage = error.response?.data?.error || 'An error occurred'
-    return Promise.reject(new Error(errorMessage))
-  }
-)
-
 export interface Plant {
   id: string
   name: string
@@ -47,6 +24,29 @@ export enum Stores {
   MITCHELLS_PLAIN = 'mitchellsPlain',
   SOMERSET_WEST = 'somersetWest',
 }
+
+const apiClient = axios.create({
+  baseURL: '/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const errorMessage = error.response?.data?.error || 'An error occurred'
+    return Promise.reject(new Error(errorMessage))
+  }
+)
 
 export async function getToken(
   credentials: UserCredentials
