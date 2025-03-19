@@ -15,34 +15,10 @@ import { useState } from 'react'
 import { Plant, Role, updatePlant } from '../../utils/api'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '../../context/AuthContext'
+import FormAlert from '../FormAlert'
 
 interface PlantItemProps {
   plant: Plant
-}
-
-interface FormAlertProps {
-  message: string
-  type: 'error' | 'success'
-}
-
-function FormAlert({ message, type }: FormAlertProps) {
-  return (
-    <Stack
-      sx={{
-        backgroundColor:
-          theme.palette[type === 'error' ? 'neutral' : 'accent2'].light,
-        borderRadius: 2,
-        padding: 1,
-        border: `1px solid ${
-          theme.palette[type === 'error' ? 'error' : 'accent2'].main
-        }`,
-      }}
-    >
-      <Typography color={type === 'error' ? 'error' : 'accent2'}>
-        {message}
-      </Typography>
-    </Stack>
-  )
 }
 
 export default function PlantItem({ plant }: PlantItemProps) {
@@ -98,7 +74,7 @@ export default function PlantItem({ plant }: PlantItemProps) {
                 src={`${
                   import.meta.env.VITE_API_URL || 'http://localhost:8000'
                 }/${plant.image}`}
-                alt='Ficus Lyrata'
+                alt='Plant'
               />
             </Box>
             <Stack>

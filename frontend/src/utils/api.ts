@@ -60,7 +60,9 @@ export async function getPlants(): Promise<Plant[]> {
   return response.data
 }
 
-export async function addPlant(plant: Omit<Plant, 'id'>): Promise<Plant> {
+export async function addPlant(
+  plant: Omit<Plant, 'id' | 'image'>
+): Promise<Plant> {
   const response = await apiClient.post('/plant', plant)
   return response.data
 }
