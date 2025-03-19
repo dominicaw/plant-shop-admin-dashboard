@@ -8,7 +8,7 @@ export interface Plant {
   image: string
 }
 
-export interface UserCredentials {
+interface UserCredentials {
   email: string
   password: string
 }

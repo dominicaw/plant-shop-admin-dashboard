@@ -14,9 +14,9 @@ export default function RedirectIfUnauthorised({
   const { roles } = useAuth()
   const location = useLocation()
 
-  const isAuthorized = roles.some((role) => allowedRoles.includes(role))
+  const isAuthorised = roles.some((role) => allowedRoles.includes(role))
 
-  if (!isAuthorized) {
+  if (!isAuthorised) {
     return <Navigate to='/dashboard' state={{ from: location }} replace />
   }
 
