@@ -1,6 +1,6 @@
 import { Button, Stack, TextField } from '@mui/material'
-import { convertPxToRem } from '../../utils'
 import { useState } from 'react'
+import theme, { shadows } from '../../theme'
 
 export default function AddPlantForm() {
   const [name, setName] = useState<string>('')
@@ -18,6 +18,10 @@ export default function AddPlantForm() {
         spacing={2}
         sx={{
           width: '100%',
+          backgroundColor: theme.palette.background.paper,
+          borderRadius: 2,
+          boxShadow: shadows.lightest,
+          p: 2,
         }}
       >
         <TextField
@@ -53,7 +57,7 @@ export default function AddPlantForm() {
           onChange={(e) => setPrice(Number(e.target.value))}
         />
 
-        <Button color='primary' variant='contained'>
+        <Button color='primary' variant='contained' size='small'>
           Add plant
         </Button>
       </Stack>

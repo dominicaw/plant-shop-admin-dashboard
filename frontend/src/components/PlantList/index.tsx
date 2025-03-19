@@ -2,12 +2,14 @@ import { Typography, Stack, Skeleton, Button } from '@mui/material'
 import { convertPxToRem } from '../../utils'
 import PlantItem from '../PlantItem'
 import useGetPlants from '../../hooks/useGetPlants'
+import { useNavigate } from 'react-router-dom'
 
 export function PlantList() {
   const { data: plants, error, isLoading } = useGetPlants()
+  const navigate = useNavigate()
 
   function onAddPlantClick() {
-    console.log('Add plant clicked')
+    navigate('/add-plant')
   }
 
   return (

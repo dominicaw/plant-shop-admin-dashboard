@@ -8,7 +8,7 @@ import { styled } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
 import * as React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import theme from '../../theme'
 import Logo from '../Logo'
 import UserNavigation from '../UserNavigation'
@@ -42,6 +42,7 @@ const NavigationItem = ({ icon, label, to }: NavigationItemProps) => {
 
 export default function Navigation({ children }: NavigationProps) {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -49,6 +50,10 @@ export default function Navigation({ children }: NavigationProps) {
 
   const handleDrawerClose = () => {
     setOpen(false)
+  }
+
+  function onLogoClick() {
+    navigate('/dashboard')
   }
 
   return (
@@ -69,7 +74,7 @@ export default function Navigation({ children }: NavigationProps) {
           >
             <MenuIcon />
           </IconButton>
-          <Logo size='small' />
+          <Logo size='small' onClick={onLogoClick} />
           <UserNavigation />
         </Toolbar>
       </AppBar>

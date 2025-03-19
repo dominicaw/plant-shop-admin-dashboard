@@ -1,4 +1,4 @@
-import { Stack, Divider } from '@mui/material'
+import { Stack, Divider, Typography } from '@mui/material'
 import DashboardHeader from '../../components/DashboardHeader'
 import { defaultFullscreenPageStyling } from '../../theme'
 import AddPlantForm from '../../components/AddPlantForm'
@@ -11,6 +11,9 @@ export default function AddPlantPage() {
         <Stack spacing={2}>
           <DashboardHeader />
           <Divider />
+          <Typography variant='h3' component='h2'>
+            Add a plant
+          </Typography>
           <AddPlantForm />
         </Stack>
       </Navigation>
