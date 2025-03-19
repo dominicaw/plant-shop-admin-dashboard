@@ -3,10 +3,13 @@ import { convertPxToRem } from '../../utils'
 import PlantItem from '../PlantItem'
 import useGetPlants from '../../hooks/useGetPlants'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
+import { Role } from '../../utils/api'
 
 export function PlantList() {
   const { data: plants, error, isLoading } = useGetPlants()
   const navigate = useNavigate()
+  const { roles } = useAuth()
 
   function onAddPlantClick() {
     navigate('/add-plant')
@@ -18,14 +21,16 @@ export function PlantList() {
         <Typography variant='h3' component='h2'>
           Plants
         </Typography>
-        <Button
-          variant='outlined'
-          color='primary'
-          size='small'
-          onClick={onAddPlantClick}
-        >
-          Add plant
-        </Button>
+        {!roles.includes(Role.ASSISTANT) && (
+          <Button
+            variant='outlined'
+            color='primary'
+            size='small'
+            onClick={onAddPlantClick}
+          >
+            Add plant
+          </Button>
+        )}
       </Stack>
 
       {isLoading && !error && (
