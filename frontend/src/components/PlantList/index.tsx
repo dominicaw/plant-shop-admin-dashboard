@@ -1,4 +1,4 @@
-import { Typography, Stack, Skeleton } from '@mui/material'
+import { Typography, Stack, Skeleton, Button } from '@mui/material'
 import { convertPxToRem } from '../../utils'
 import PlantItem from '../PlantItem'
 import useGetPlants from '../../hooks/useGetPlants'
@@ -6,11 +6,25 @@ import useGetPlants from '../../hooks/useGetPlants'
 export function PlantList() {
   const { data: plants, error, isLoading } = useGetPlants()
 
+  function onAddPlantClick() {
+    console.log('Add plant clicked')
+  }
+
   return (
     <>
-      <Typography variant='h3' component='h2'>
-        Plants
-      </Typography>
+      <Stack direction='row' justifyContent='space-between' alignItems='center'>
+        <Typography variant='h3' component='h2'>
+          Plants
+        </Typography>
+        <Button
+          variant='outlined'
+          color='primary'
+          size='small'
+          onClick={onAddPlantClick}
+        >
+          Add plant
+        </Button>
+      </Stack>
 
       {isLoading && !error && (
         <Stack spacing={2}>

@@ -66,7 +66,7 @@ export async function addPlant(plant: Omit<Plant, 'id'>): Promise<Plant> {
 }
 
 export async function updatePlant(
-  id: number,
+  id: string,
   plant: Partial<Plant>
 ): Promise<Plant> {
   const response = await apiClient.put(`/plant/${id}`, plant)

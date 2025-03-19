@@ -55,6 +55,7 @@ export default function LoginForm() {
       >
         <TextField
           label='Email'
+          type='email'
           variant='outlined'
           fullWidth
           margin='normal'
