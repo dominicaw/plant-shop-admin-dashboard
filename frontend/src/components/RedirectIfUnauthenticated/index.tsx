@@ -1,14 +1,12 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 
-interface RedirectIfUnauthenticatedProps {
-  children: React.ReactNode
-}
-
-export default function RedirectIfUnauthenticated({
-  children,
-}: RedirectIfUnauthenticatedProps) {
+export default function RedirectIfUnauthenticated() {
   const { token } = useAuth()
 
-  return token ? children : <Navigate to='/' />
+  if (!token) {
+    return <Navigate to='/' replace />
+  }
+
+  return <Outlet />
 }

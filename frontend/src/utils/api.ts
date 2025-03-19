@@ -24,7 +24,7 @@ apiClient.interceptors.response.use(
 )
 
 export interface Plant {
-  id: number
+  id: string
   name: string
   price: number
   quantity: number

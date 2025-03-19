@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "npm i",
     "start": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
   },
   "devDependencies": {

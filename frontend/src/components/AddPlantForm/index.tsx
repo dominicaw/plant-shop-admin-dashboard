@@ -1,4 +1,4 @@
-import { Stack, TextField } from '@mui/material'
+import { Button, Stack, TextField } from '@mui/material'
 import { convertPxToRem } from '../../utils'
 import { useState } from 'react'
 
@@ -52,6 +52,10 @@ export default function AddPlantForm() {
           value={price}
           onChange={(e) => setPrice(Number(e.target.value))}
         />
+
+        <Button color='primary' variant='contained'>
+          Add plant
+        </Button>
       </Stack>
     </form>
   )
