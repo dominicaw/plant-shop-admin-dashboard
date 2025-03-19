@@ -58,25 +58,43 @@ export default function PlantItem({ plant }: PlantItemProps) {
           <Stack gap={2} alignItems='center' flexDirection='row'>
             <Box
               sx={{
+                position: 'relative',
                 height: convertPxToRem(50),
                 width: convertPxToRem(50),
                 borderRadius: '50%',
                 overflow: 'hidden',
                 border: `1px solid ${theme.palette.accent2.main}`,
+                backgroundColor: theme.palette.accent2.light,
               }}
             >
-              <img
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-                src={`${
-                  import.meta.env.VITE_API_URL || 'http://localhost:8000'
-                }/${plant.image}`}
-                alt='Plant'
-              />
+              {plant.image ? (
+                <img
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                  src={`${
+                    import.meta.env.VITE_API_URL || 'http://localhost:8000'
+                  }/${plant.image}`}
+                  alt='Plant'
+                />
+              ) : (
+                <Typography
+                  color='primary'
+                  sx={{
+                    position: 'absolute',
+                    fontSize: convertPxToRem(12),
+                    textAlign: 'center',
+                    top: '20%',
+                    lineHeight: 1,
+                  }}
+                >
+                  No image
+                </Typography>
+              )}
             </Box>
+
             <Stack>
               <Typography variant='body1' fontWeight={600}>
                 {plant.name}
